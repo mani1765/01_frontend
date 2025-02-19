@@ -4,9 +4,6 @@ on:
     push:
         branches:
             - main
-
-
-
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -24,21 +21,7 @@ jobs:
         - name: Install dependencies
           run: npm install && npm install ci
 
-        - name: Install protoc
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y protobuf-compiler  
-
-        - name: Check pb directory and demo.proto file
-          run: |
-              if [ ! -d "./src/frontend/pb" ]; then
-                echo "Error: ./src/frontend/pb directory does not exist."
-                exit 1
-              fi
-              if [ ! -f "./src/frontend/pb/demo.proto" ]; then
-                echo "Error: demo.proto file does not exist in ./src/frontend/pb directory."
-                exit 1
-              fi     
+       
 
         - name: Build
           run: npm run build
