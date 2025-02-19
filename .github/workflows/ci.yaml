@@ -20,21 +20,19 @@ jobs:
           uses: actions/setup-node@v2
           with:
             node-version: '20'
-
-        - name: libc6-compat protobuf-dev
-          run: apk add --no-cache libc6-compat protobuf-dev
-
-        - name: install practo
-          run: npm install -g practo    
         
         - name: Install dependencies
-          run: npm install
+          run: npm ci
 
-        - name: Build the code
-          run: npm run build
+        - name: Generate gRPC code
+          run: npm run grpc:generate
           
-        - name: Run tests
-          run: npm test  
+        - name: Build
+          run: npm run build
+
+        - name: Test the application
+          run: |
+            npm test  
 
 
            
