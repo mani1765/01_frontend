@@ -20,6 +20,12 @@ jobs:
           uses: actions/setup-node@v2
           with:
             node-version: '20'
+
+        - name: libc6-compat protobuf-dev
+          run: apk add --no-cache libc6-compat protobuf-dev
+
+        - name: install practo
+          run: npm install -g practo    
         
         - name: Install dependencies
           run: npm install
